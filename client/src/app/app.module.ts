@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { SharedService } from './shared.service';
+import { AuthGuardService } from './authGuard.service';
 
 
 @NgModule({
@@ -23,7 +24,7 @@ import { SharedService } from './shared.service';
     HttpClientModule
     
   ],
-  providers: [SharedService],
+  providers: [SharedService, AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

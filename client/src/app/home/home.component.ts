@@ -3,6 +3,7 @@ import { HomeService } from './home.service';
 import { Message } from '../model/message.model';
 import { NavigationEnd, Router } from '@angular/router';
 import { SharedService } from '../shared.service';
+import { AuthGuardService } from '../authGuard.service';
 
 @Component({
   selector: 'app-home',
@@ -22,7 +23,7 @@ export class HomeComponent implements OnInit {
   public token:String;
   public tempName:String;
 
-  constructor(private router:Router, private homeService:HomeService) { 
+  constructor(private authGuardService:AuthGuardService, private router:Router, private homeService:HomeService) { 
     this.message = new Message();
     
     setInterval(()=>this.getMessages(),1000);  
@@ -38,6 +39,7 @@ export class HomeComponent implements OnInit {
   logout(){
     localStorage.removeItem('token');
     this.router.navigate(['/login']);
+    this.authGuardService.userLoggedIn = false;
   }
 
   ngOnInit() {

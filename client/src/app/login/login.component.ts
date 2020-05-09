@@ -3,6 +3,7 @@ import { LoginService } from './login.service';
 import { User } from '../model/user.model';
 import { Router } from '@angular/router';
 import { SharedService } from '../shared.service';
+import { AuthGuardService } from '../authGuard.service';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +21,7 @@ export class LoginComponent implements OnInit {
   public randNum:Number;
   
 
-  constructor(private sharedService:SharedService, private loginService:LoginService, private route:Router) { 
+  constructor(private authGuardService:AuthGuardService, private sharedService:SharedService, private loginService:LoginService, private route:Router) { 
     this.user= new User();
   }
 
@@ -39,7 +40,7 @@ export class LoginComponent implements OnInit {
             localStorage.setItem('token',this.user.username); 
             this.route.navigate(['/home']);
             this.sharedService.changeUser(this.user.username);
-                      
+            this.authGuardService.userLoggedIn = true;          
           }
           else{
             this.LoginMessage="Wrong Username or Password";
@@ -60,7 +61,8 @@ export class LoginComponent implements OnInit {
         if(result.status=="success")
         {
             localStorage.setItem('token',this.user.username);
-            this.route.navigate(['/home']);  
+            this.route.navigate(['/home']);
+            this.authGuardService.userLoggedIn = true;  
         }  
         this.LoginMessage = "Signup successfully";
       }, error => {
