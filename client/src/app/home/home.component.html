@@ -52,14 +52,14 @@
                                 <div class="received_msg">
                                     <div class="received_withd_msg">
                                         <p>{{msg.textM}}</p>
-                                        <span class="time_date"> 11:01 AM | June 9</span>
+                                        <span class="time_date"> {{msg.timeM}}</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="outgoing_msg" *ngIf="msg.typeM=='s'">
                                 <div class="sent_msg">
                                     <p>{{msg.textM}}</p>
-                                    <span class="time_date"> 11:01 AM | June 9</span>
+                                    <span class="time_date"> {{msg.timeM}}</span>
                                 </div>
                             </div>
                         </div>

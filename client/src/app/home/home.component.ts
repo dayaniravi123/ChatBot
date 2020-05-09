@@ -10,6 +10,7 @@ import { SharedService } from '../shared.service';
   styleUrls: ['./home.component.css'],
   providers:[HomeService]
 })
+
 export class HomeComponent implements OnInit {
 
   public message:Message;
